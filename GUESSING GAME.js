@@ -33,9 +33,10 @@ function reset(){
 	}
 	colorpicked=Math.floor((Math.random() * (len)));
 	top_color.style.background="#3399ff";
+	var total=colors[colorpicked][0]+colors[colorpicked][1]+colors[colorpicked][2];
 	correct_color="rgb("+String(colors[colorpicked][0])+","+String(colors[colorpicked][1])+","+String(colors[colorpicked][2])+")";
 	for(var i=0;i<3;i++){
-		spans[i].textContent=Math.floor((colors[colorpicked][i]/255)*100);
+		spans[i].textContent=Math.floor((colors[colorpicked][i]/total)*100);
 	}
 	for(var i=len;i<9;i++){
 		squares[i].style.background="#232323";
@@ -44,6 +45,7 @@ function reset(){
 		squares[i].addEventListener("click",function(){
 			if(this.style.background==squares[colorpicked].style.background){
 				remark.textContent="YOU WON!🎉🎉";
+				remark.color="red";
 				tryagain.textContent="try again?";
 				for(var j=0;j<len;j++){
 					squares[j].style.background=correct_color;
